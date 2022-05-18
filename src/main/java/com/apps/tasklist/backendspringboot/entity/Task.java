@@ -4,8 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "task", schema = "tasklist", catalog = "")
-public class TaskEntity {
+public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -27,10 +26,10 @@ public class TaskEntity {
     private Long categoryId;
     @ManyToOne
     @JoinColumn(name = "priority_id", referencedColumnName = "id")
-    private PriorityEntity priorityByPriorityId;
+    private Priority priorityByPriorityId;
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
-    private CategoryEntity categoryByCategoryId;
+    private Category categoryByCategoryId;
 
     public Long getId() {
         return id;
@@ -85,14 +84,14 @@ public class TaskEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        TaskEntity that = (TaskEntity) o;
+        Task task = (Task) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (title != null ? !title.equals(that.title) : that.title != null) return false;
-        if (completed != null ? !completed.equals(that.completed) : that.completed != null) return false;
-        if (date != null ? !date.equals(that.date) : that.date != null) return false;
-        if (priorityId != null ? !priorityId.equals(that.priorityId) : that.priorityId != null) return false;
-        if (categoryId != null ? !categoryId.equals(that.categoryId) : that.categoryId != null) return false;
+        if (id != null ? !id.equals(task.id) : task.id != null) return false;
+        if (title != null ? !title.equals(task.title) : task.title != null) return false;
+        if (completed != null ? !completed.equals(task.completed) : task.completed != null) return false;
+        if (date != null ? !date.equals(task.date) : task.date != null) return false;
+        if (priorityId != null ? !priorityId.equals(task.priorityId) : task.priorityId != null) return false;
+        if (categoryId != null ? !categoryId.equals(task.categoryId) : task.categoryId != null) return false;
 
         return true;
     }
@@ -108,19 +107,19 @@ public class TaskEntity {
         return result;
     }
 
-    public PriorityEntity getPriorityByPriorityId() {
+    public Priority getPriorityByPriorityId() {
         return priorityByPriorityId;
     }
 
-    public void setPriorityByPriorityId(PriorityEntity priorityByPriorityId) {
+    public void setPriorityByPriorityId(Priority priorityByPriorityId) {
         this.priorityByPriorityId = priorityByPriorityId;
     }
 
-    public CategoryEntity getCategoryByCategoryId() {
+    public Category getCategoryByCategoryId() {
         return categoryByCategoryId;
     }
 
-    public void setCategoryByCategoryId(CategoryEntity categoryByCategoryId) {
+    public void setCategoryByCategoryId(Category categoryByCategoryId) {
         this.categoryByCategoryId = categoryByCategoryId;
     }
 }

@@ -3,8 +3,7 @@ package com.apps.tasklist.backendspringboot.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "stat", schema = "tasklist", catalog = "")
-public class StatEntity {
+public class Stat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -45,12 +44,12 @@ public class StatEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        StatEntity that = (StatEntity) o;
+        Stat stat = (Stat) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (completedTotal != null ? !completedTotal.equals(that.completedTotal) : that.completedTotal != null)
+        if (id != null ? !id.equals(stat.id) : stat.id != null) return false;
+        if (completedTotal != null ? !completedTotal.equals(stat.completedTotal) : stat.completedTotal != null)
             return false;
-        if (uncompletedTotal != null ? !uncompletedTotal.equals(that.uncompletedTotal) : that.uncompletedTotal != null)
+        if (uncompletedTotal != null ? !uncompletedTotal.equals(stat.uncompletedTotal) : stat.uncompletedTotal != null)
             return false;
 
         return true;

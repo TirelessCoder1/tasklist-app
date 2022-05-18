@@ -4,8 +4,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name = "priority", schema = "tasklist", catalog = "")
-public class PriorityEntity {
+public class Priority {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -17,7 +16,7 @@ public class PriorityEntity {
     @Column(name = "color", nullable = false, length = 45)
     private String color;
     @OneToMany(mappedBy = "priorityByPriorityId")
-    private Collection<TaskEntity> tasksById;
+    private Collection<Task> tasksById;
 
     public Long getId() {
         return id;
@@ -48,11 +47,11 @@ public class PriorityEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        PriorityEntity that = (PriorityEntity) o;
+        Priority priority = (Priority) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (title != null ? !title.equals(that.title) : that.title != null) return false;
-        if (color != null ? !color.equals(that.color) : that.color != null) return false;
+        if (id != null ? !id.equals(priority.id) : priority.id != null) return false;
+        if (title != null ? !title.equals(priority.title) : priority.title != null) return false;
+        if (color != null ? !color.equals(priority.color) : priority.color != null) return false;
 
         return true;
     }
@@ -65,11 +64,11 @@ public class PriorityEntity {
         return result;
     }
 
-    public Collection<TaskEntity> getTasksById() {
+    public Collection<Task> getTasksById() {
         return tasksById;
     }
 
-    public void setTasksById(Collection<TaskEntity> tasksById) {
+    public void setTasksById(Collection<Task> tasksById) {
         this.tasksById = tasksById;
     }
 }

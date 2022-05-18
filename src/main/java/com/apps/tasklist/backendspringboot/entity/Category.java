@@ -4,8 +4,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name = "category", schema = "tasklist", catalog = "")
-public class CategoryEntity {
+public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
@@ -20,7 +19,7 @@ public class CategoryEntity {
     @Column(name = "uncompleted_count", nullable = true)
     private Long uncompletedCount;
     @OneToMany(mappedBy = "categoryByCategoryId")
-    private Collection<TaskEntity> tasksById;
+    private Collection<Task> tasksById;
 
     public Long getId() {
         return id;
@@ -59,13 +58,13 @@ public class CategoryEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        CategoryEntity that = (CategoryEntity) o;
+        Category category = (Category) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (title != null ? !title.equals(that.title) : that.title != null) return false;
-        if (completedCount != null ? !completedCount.equals(that.completedCount) : that.completedCount != null)
+        if (id != null ? !id.equals(category.id) : category.id != null) return false;
+        if (title != null ? !title.equals(category.title) : category.title != null) return false;
+        if (completedCount != null ? !completedCount.equals(category.completedCount) : category.completedCount != null)
             return false;
-        if (uncompletedCount != null ? !uncompletedCount.equals(that.uncompletedCount) : that.uncompletedCount != null)
+        if (uncompletedCount != null ? !uncompletedCount.equals(category.uncompletedCount) : category.uncompletedCount != null)
             return false;
 
         return true;
@@ -80,11 +79,11 @@ public class CategoryEntity {
         return result;
     }
 
-    public Collection<TaskEntity> getTasksById() {
+    public Collection<Task> getTasksById() {
         return tasksById;
     }
 
-    public void setTasksById(Collection<TaskEntity> tasksById) {
+    public void setTasksById(Collection<Task> tasksById) {
         this.tasksById = tasksById;
     }
 }

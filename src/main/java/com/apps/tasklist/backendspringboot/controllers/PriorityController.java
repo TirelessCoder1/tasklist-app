@@ -40,6 +40,30 @@ public class PriorityController {
             return new ResponseEntity("missed param: title", HttpStatus.NOT_ACCEPTABLE);
         }
 
+        //check if 'color' is empty
+        if (priority.getColor() == null || priority.getColor().trim().length() == 0) {
+            return new ResponseEntity("missed param: color", HttpStatus.NOT_ACCEPTABLE);
+        }
+
+        return ResponseEntity.ok(priorityRepository.save(priority));
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity update(@RequestBody Priority priority) {
+        //Check for required parameters
+        if (priority.getId() == null && priority.getId() == 0) {
+            return new ResponseEntity("missed param: id", HttpStatus.NOT_ACCEPTABLE);
+        }
+
+        // check if 'title' is empty
+        if (priority.getTitle() == null || priority.getTitle().trim().length() == 0) {
+            return new ResponseEntity("missed param: title", HttpStatus.NOT_ACCEPTABLE);
+        }
+        //check if 'color' is empty
+        if (priority.getColor() == null || priority.getColor().trim().length() == 0) {
+            return new ResponseEntity("missed param: color", HttpStatus.NOT_ACCEPTABLE);
+        }
+
         return ResponseEntity.ok(priorityRepository.save(priority));
     }
 }

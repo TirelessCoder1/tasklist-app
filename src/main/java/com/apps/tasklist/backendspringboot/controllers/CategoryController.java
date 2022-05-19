@@ -1,7 +1,6 @@
 package com.apps.tasklist.backendspringboot.controllers;
 
 import com.apps.tasklist.backendspringboot.entity.Category;
-import com.apps.tasklist.backendspringboot.entity.Priority;
 import com.apps.tasklist.backendspringboot.repositories.CategoryRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,5 +1,6 @@
 package com.apps.tasklist.backendspringboot.controllers;
 
+import com.apps.tasklist.backendspringboot.entity.Category;
 import com.apps.tasklist.backendspringboot.entity.Priority;
 import com.apps.tasklist.backendspringboot.repositories.PriorityRepository;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -72,6 +73,13 @@ public class PriorityController {
             return new ResponseEntity("id="+id+" not found", HttpStatus.NOT_ACCEPTABLE);
         }
         return ResponseEntity.ok(priority);
+    }
+
+    //sort priorities by id
+    @GetMapping("/all")
+    public List<Priority> sortElements() {
+
+        return priorityRepository.findAllByOrderByIdAsc();
     }
 
     //delete element by id from the path

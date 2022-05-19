@@ -21,16 +21,6 @@ public class CategoryController {
         this.categoryRepository = categoryRepository;
     }
 
-    //Testing Get queries
-    @GetMapping("test")
-    public List<Category> test() {
-
-        List<Category> list = categoryRepository.findAll();
-//        System.out.println("list = " + list);
-
-        return list;
-    }
-
     @PostMapping("/add")
     public ResponseEntity<Category> add(@RequestBody Category category) {
 
@@ -75,6 +65,13 @@ public class CategoryController {
             return new ResponseEntity("id="+id+" not found", HttpStatus.NOT_ACCEPTABLE);
         }
         return ResponseEntity.ok(category);
+    }
+
+    //sort categories by title
+    @GetMapping("/all")
+    public List<Category> sortElements() {
+
+        return categoryRepository.findAllByOrderByTitleAsc();
     }
 
     //delete element by id from the path

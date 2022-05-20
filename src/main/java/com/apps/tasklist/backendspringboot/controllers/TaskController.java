@@ -2,6 +2,7 @@ package com.apps.tasklist.backendspringboot.controllers;
 
 import com.apps.tasklist.backendspringboot.entity.Task;
 import com.apps.tasklist.backendspringboot.repositories.TaskRepository;
+import com.apps.tasklist.backendspringboot.search.TaskSearchValues;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -90,6 +91,19 @@ public class TaskController {
         }
 
         return  ResponseEntity.ok(task);
+    }
+
+    //Search by any parameter
+    @PostMapping("/search")
+    public ResponseEntity<List<Task>> search(@RequestBody TaskSearchValues taskSearchValues) {
+
+        String text = taskSearchValues.getTitle() != null ? taskSearchValues.getTitle() : null;
+        Integer completed = taskSearchValues.getCompleted() != null ?  taskSearchValues.getCompleted() : null;
+        Long priorityId = taskSearchValues.getPriorityId() != null ? taskSearchValues.getPriorityId() : null;
+        Long categoryId = taskSearchValues.getCategoryId() != null ? taskSearchValues.getCategoryId() : null;
+
+        return ResponseEntity.ok(taskRepository.findByParams(text, completed, priorityId, categoryId));
+
     }
 
 }

@@ -3,6 +3,7 @@ package com.apps.tasklist.backendspringboot.controllers;
 import com.apps.tasklist.backendspringboot.entity.Category;
 import com.apps.tasklist.backendspringboot.entity.Priority;
 import com.apps.tasklist.backendspringboot.repositories.CategoryRepository;
+import com.apps.tasklist.backendspringboot.search.CategorySearchValues;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -86,6 +87,12 @@ public class CategoryController {
         }
 
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PostMapping("/search")
+    public ResponseEntity <List<Category>> search(@RequestBody CategorySearchValues categorySearchValues) {
+
+        return ResponseEntity.ok(categoryRepository.findByTitle(categorySearchValues.getText()));
     }
 
 }

@@ -3,6 +3,8 @@ package com.apps.tasklist.backendspringboot.controllers;
 import com.apps.tasklist.backendspringboot.entity.Category;
 import com.apps.tasklist.backendspringboot.entity.Priority;
 import com.apps.tasklist.backendspringboot.repositories.PriorityRepository;
+import com.apps.tasklist.backendspringboot.search.CategorySearchValues;
+import com.apps.tasklist.backendspringboot.search.PrioritySearchValues;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -94,5 +96,11 @@ public class PriorityController {
         }
 
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PostMapping("/search")
+    public ResponseEntity <List<Priority>> search(@RequestBody PrioritySearchValues prioritySearchValues) {
+
+        return ResponseEntity.ok(priorityRepository.findByTitle(prioritySearchValues.getText()));
     }
 }

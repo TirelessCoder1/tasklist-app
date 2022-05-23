@@ -5,6 +5,10 @@ import com.apps.tasklist.backendspringboot.repositories.TaskRepository;
 import com.apps.tasklist.backendspringboot.search.TaskSearchValues;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -95,14 +99,29 @@ public class TaskController {
 
     //Search by any parameter
     @PostMapping("/search")
-    public ResponseEntity<List<Task>> search(@RequestBody TaskSearchValues taskSearchValues) {
+    public ResponseEntity<Page<Task>> search(@RequestBody TaskSearchValues taskSearchValues) {
 
         String text = taskSearchValues.getTitle() != null ? taskSearchValues.getTitle() : null;
         Integer completed = taskSearchValues.getCompleted() != null ?  taskSearchValues.getCompleted() : null;
         Long priorityId = taskSearchValues.getPriorityId() != null ? taskSearchValues.getPriorityId() : null;
         Long categoryId = taskSearchValues.getCategoryId() != null ? taskSearchValues.getCategoryId() : null;
 
-        return ResponseEntity.ok(taskRepository.findByParams(text, completed, priorityId, categoryId));
+        String sortColumn = taskSearchValues.getSortColumn() != null ? taskSearchValues.getSortColumn() : null;
+        String sortDirection = taskSearchValues.getSortDirection() != null ? taskSearchValues.getSortDirection() : null;
+
+        Integer pageNumber = taskSearchValues.getPageNumber() != null ? taskSearchValues.getPageNumber() : null;
+        Integer pageSize = taskSearchValues.getPageSize() != null ? taskSearchValues.getPageSize() : null;
+
+        //sort in ascending order by default
+        Sort.Direction direction = sortDirection == null || sortDirection.trim().equals("asc") ? Sort.Direction.ASC : Sort.Direction.DESC;
+
+        Sort sort = Sort.by(direction, sortColumn);
+
+        PageRequest pageRequest = PageRequest.of(pageNumber, pageSize);
+
+        Page page = taskRepository.findByParams(text, completed, priorityId, categoryId, pageRequest);
+
+        return ResponseEntity.ok(page);
 
     }
 

@@ -1,31 +1,26 @@
 package com.apps.tasklist.backendspringboot.controllers;
 
 import com.apps.tasklist.backendspringboot.entity.Stat;
-import com.apps.tasklist.backendspringboot.repositories.StatRepository;
+import com.apps.tasklist.backendspringboot.services.StatService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping ("/stat")
 public class StatController {
 
-    private StatRepository statRepository;
+    private final StatService statService;
 
-    public StatController(StatRepository statRepository) {
-        this.statRepository = statRepository;
+    public StatController(StatService statService) {
+        this.statService = statService;
     }
 
-    //Testing Get queries
-    @GetMapping("test")
-    public List<Stat> test() {
+    private final Long defaultId = 1l;
 
-        List<Stat> list = statRepository.findAll();
-        return list;
-    }
+    @GetMapping("/stat")
+    public ResponseEntity<Stat> findById() {
 
-    @PostMapping("/add")
-    public Stat add(@RequestBody Stat stat) {
-        return statRepository.save(stat);
+        return  ResponseEntity.ok(statService.findById(defaultId));
     }
 }

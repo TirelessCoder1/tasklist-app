@@ -1,5 +1,6 @@
 <mat-card>
   <mat-card-title>{{category.title}}</mat-card-title>
+
   <mat-card-content>
     <ul>
       <li>
@@ -14,5 +15,11 @@
       </li>
     </ul>
   </mat-card-content>
-  <mat-card-footer></mat-card-footer>
+
+  <mat-card-footer class="p-2">
+    <mat-form-field appearance="fill" style="width: 100%">
+      <mat-label>Add Task</mat-label>
+      <input matInput type="text">
+    </mat-form-field>
+  </mat-card-footer>
 </mat-card>

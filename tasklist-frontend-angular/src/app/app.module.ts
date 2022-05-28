@@ -7,6 +7,7 @@ import {MatInputModule} from '@angular/material/input';
 import {CategoryCardComponent} from './category-card/category-card.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     BrowserAnimationsModule,
     MatInputModule,
     MatCardModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

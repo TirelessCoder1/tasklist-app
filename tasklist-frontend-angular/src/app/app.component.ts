@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {CategoryHttpService} from "./services/category-http.service";
+import {Category} from "./entities/Category";
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,11 @@ import {CategoryHttpService} from "./services/category-http.service";
 })
 export class AppComponent {
 
+  categories: Category[] = [];
   constructor(private categoryHttp: CategoryHttpService) {
-    this.categoryHttp.getCategories().subscribe((some) => {
-      console.log(some)
+    this.categoryHttp.getCategories().subscribe((some:any) => {
+      this.categories = some;
+      console.log(this.categories);
     })
   }
 }

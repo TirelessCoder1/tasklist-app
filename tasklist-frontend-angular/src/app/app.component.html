@@ -16,8 +16,8 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-3">
-      <app-category-card>
+    <div class="col-3" *ngFor = "let x of categories">
+      <app-category-card [category]="x">
       </app-category-card>
     </div>
   </div>

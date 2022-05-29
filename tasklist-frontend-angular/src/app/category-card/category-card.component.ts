@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Category} from "../entities/Category";
 
 @Component({
@@ -6,11 +6,13 @@ import {Category} from "../entities/Category";
   templateUrl: './category-card.component.html',
   styleUrls: ['./category-card.component.css']
 })
+
 export class CategoryCardComponent implements OnInit {
 
-  category: Category = {title: "New category", id: 354}
+  constructor() {}
 
-  constructor() { }
+  @Input()
+  category: Category | undefined;
 
   ngOnInit(): void {
   }

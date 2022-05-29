@@ -8,6 +8,8 @@ import {CategoryCardComponent} from './category-card/category-card.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {FormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
+import {CategoryHttpService} from "./services/category-http.service";
 
 @NgModule({
   declarations: [
@@ -20,9 +22,12 @@ import {FormsModule} from "@angular/forms";
     MatInputModule,
     MatCardModule,
     MatCheckboxModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    CategoryHttpService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

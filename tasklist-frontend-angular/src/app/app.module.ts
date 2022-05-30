@@ -10,6 +10,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {CategoryHttpService} from "./services/category-http.service";
+import {TaskHttpService} from "./services/task-http.service";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {CategoryHttpService} from "./services/category-http.service";
     HttpClientModule
   ],
   providers: [
-    CategoryHttpService
+    CategoryHttpService,
+    TaskHttpService
   ],
   bootstrap: [AppComponent]
 })

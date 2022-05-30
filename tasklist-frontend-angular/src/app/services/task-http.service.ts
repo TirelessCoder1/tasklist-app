@@ -1,5 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {Task} from "../entities/Task";
 
 @Injectable()
 export class TaskHttpService {
@@ -10,7 +12,7 @@ export class TaskHttpService {
 
   }
 
-  public getTask () {
-    return this.httpClient.get(this.backendUrl + "/task/all");
+  public getTask (): Observable<Task[]> {
+    return this.httpClient.get<Task[]>(this.backendUrl + "/task/all");
   }
 }

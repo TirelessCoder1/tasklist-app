@@ -3,14 +3,9 @@
     <mat-card-title>Title</mat-card-title>
     <mat-card-content>
     <ul>
-      <li>
+      <li *ngFor="let task of category?.tasks">
         <mat-checkbox>
-          MUJt
-        </mat-checkbox>
-      </li>
-      <li>
-        <mat-checkbox>
-          MUJt
+          {{task.title}}
         </mat-checkbox>
       </li>
     </ul>

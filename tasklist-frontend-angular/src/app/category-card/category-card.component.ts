@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Category} from "../entities/Category";
+import {CategoryCardType} from "../entities/CategoryCardType";
 
 @Component({
   selector: 'app-category-card',
@@ -12,7 +13,7 @@ export class CategoryCardComponent implements OnInit {
   constructor() {}
 
   @Input()
-  category: Category | undefined;
+  category: CategoryCardType | undefined;
 
   ngOnInit(): void {
   }

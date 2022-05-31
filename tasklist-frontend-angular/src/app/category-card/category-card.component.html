@@ -1,0 +1,20 @@
+
+  <mat-card>
+    <mat-card-title>Title</mat-card-title>
+    <mat-card-content>
+    <ul>
+      <li *ngFor="let task of category?.tasks">
+        <mat-checkbox>
+          {{task.title}}
+        </mat-checkbox>
+      </li>
+    </ul>
+  </mat-card-content>
+
+  <mat-card-footer class="p-2">
+    <mat-form-field appearance="fill" style="width: 100%">
+      <mat-label>Add Task</mat-label>
+      <input matInput type="text">
+    </mat-form-field>
+  </mat-card-footer>
+  </mat-card>

@@ -1,0 +1,15 @@
+ul {
+  list-style-type: none;
+  margin-top: 4px;
+  padding-left: 3px;
+}
+
+mat-card-content {
+  min-height: 75px;
+}
+
+.mat-card-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}

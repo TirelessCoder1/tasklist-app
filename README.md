@@ -1,3 +1,4 @@
+[mysql-schema.zip](https://github.com/TirelessCoder1/tasklist-app/files/8805798/mysql-schema.zip)
 ## tasklist-app
 Task/TODO list application, using Java/Spring, Angular and MySQL
 

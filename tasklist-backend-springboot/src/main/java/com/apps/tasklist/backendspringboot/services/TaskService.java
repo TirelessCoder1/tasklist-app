@@ -13,7 +13,7 @@ import java.util.List;
 @Transactional
 public class TaskService {
 
-    private final TaskRepository repository; // сервис имеет право обращаьтся к репозиторию (БД)
+    private final TaskRepository repository;
 
     public TaskService(TaskRepository repository) {
         this.repository = repository;
@@ -25,11 +25,11 @@ public class TaskService {
     }
 
     public Task add(Task task) {
-        return repository.save(task); // метод save обновляет или создает новый объект, если его не было
+        return repository.save(task);
     }
 
     public Task update(Task task){
-        return repository.save(task); // метод save обновляет или создает новый объект, если его не было
+        return repository.save(task);
     }
 
     public void deleteById(Long id){

@@ -21,6 +21,13 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
+    //get and sort categories by title
+    @GetMapping("/all")
+    public List<Category> sortElements() {
+
+        return categoryService.findAllByOrderByTitleAsc();
+    }
+
     //add element
     @PostMapping("/add")
     public ResponseEntity<Category> add(@RequestBody Category category) {
@@ -56,7 +63,7 @@ public class CategoryController {
     }
 
     //get element by id from the path
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Category> findbyID(@PathVariable Long id) {
 
         Category category = null;
@@ -69,15 +76,9 @@ public class CategoryController {
         return ResponseEntity.ok(category);
     }
 
-    //sort categories by title
-    @GetMapping("/all")
-    public List<Category> sortElements() {
-
-        return categoryService.findAllByOrderByTitleAsc();
-    }
 
     //delete element by id from the path
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable Long id) {
 
         try {

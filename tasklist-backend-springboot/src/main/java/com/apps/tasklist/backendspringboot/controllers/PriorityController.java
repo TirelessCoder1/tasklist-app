@@ -21,6 +21,14 @@ public class PriorityController {
         this.priorityService = priorityService;
     }
 
+
+    //get and sort priorities by id
+    @GetMapping("/all")
+    public List<Priority> sortElements() {
+
+        return priorityService.findAll();
+    }
+
     @PostMapping("/add")
     public ResponseEntity<Priority> add(@RequestBody Priority priority) {
 
@@ -62,7 +70,7 @@ public class PriorityController {
         return ResponseEntity.ok(priorityService.update(priority));
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Priority> findbyID(@PathVariable Long id) {
 
         Priority priority = null;
@@ -75,15 +83,8 @@ public class PriorityController {
         return ResponseEntity.ok(priority);
     }
 
-    //sort priorities by id
-    @GetMapping("/all")
-    public List<Priority> sortElements() {
-
-        return priorityService.findAll();
-    }
-
     //delete element by id from the path
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable Long id) {
 
         try {

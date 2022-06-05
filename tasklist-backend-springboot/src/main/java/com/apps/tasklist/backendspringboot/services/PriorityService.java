@@ -9,12 +9,12 @@ import java.util.List;
 
 @Service
 
-// все методы класса должны выполниться без ошибки, чтобы транзакция завершилась
-// если в методе возникнет исключение - все выполненные операции откатятся (Rollback)
+//all class methods must complete without error for the transaction to complete
+//if an exception occurs in the method, all performed operations will be rolled back
 @Transactional
 public class PriorityService {
 
-    private final PriorityRepository repository; // сервис имеет право обращаьтся к репозиторию (БД)
+    private final PriorityRepository repository;
 
     public PriorityService(PriorityRepository repository) {
         this.repository = repository;
@@ -25,11 +25,11 @@ public class PriorityService {
     }
 
     public Priority add(Priority priority) {
-        return repository.save(priority); // метод save обновляет или создает новый объект, если его не было
+        return repository.save(priority);
     }
 
     public Priority update(Priority priority){
-        return repository.save(priority); // метод save обновляет или создает новый объект, если его не было
+        return repository.save(priority);
     }
 
     public void deleteById(Long id){
@@ -37,7 +37,7 @@ public class PriorityService {
     }
 
     public Priority findById(Long id){
-        return repository.findById(id).get(); // т.к. возвращается Optional - нужно получить объект методом get()
+        return repository.findById(id).get();
     }
 
     public List<Priority> findByTitle(String text){

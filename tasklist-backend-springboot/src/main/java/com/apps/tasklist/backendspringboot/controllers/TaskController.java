@@ -67,7 +67,7 @@ public class TaskController {
 
     // delete by id
     // id parameter passes in URL itself, isntead of request`s body
-        @DeleteMapping("/delete/{id}")
+        @DeleteMapping("/{id}")
         public ResponseEntity delete(@PathVariable Long id) {
 
             try {
@@ -81,7 +81,7 @@ public class TaskController {
         }
 
     // get task by id from the path
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Task> findById(@PathVariable Long id) {
 
         Task task = null;
